@@ -1,0 +1,20 @@
+version: '2.1'
+# list services
+services:
+  service_1:
+    image: redis:alpine
+    # forward ports 
+    ports:
+      - "6379:6379"
+    # mount volumes local/containers
+    volumes:
+      - ./local_dir:/container_dir
+      
+  service_2:
+    build: custom_build
+    links:
+      - service_1
+    extra_hosts:
+      - "kafka:X.X.X.X"
+    volumes:
+      - ./custom_build/outputs:/outputs
