@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<configuration>
+    <property>
+        <name>s3Path</name>
+        <value>s3://some_path/dir1/dir2/dir3/hive/tables</value>
+    </property>
+    <property>
+        <name>appPath</name>
+        <value>hdfs://EMR_address:8020/user/hadoop/audience_oozie_v2/checker/workflow</value>
+    </property>
+    <property>
+        <name>jobTracker</name>
+        <value>EMR_address:8032</value>
+    </property>
+    <property>
+        <name>nameNode</name>
+        <value>hdfs://EMR_address:8020</value>
+    </property>
+    <property>
+        <name>oozie.coord.application.path</name>
+        <value>/user/hadoop/oozie/job_path/coordinator.xml</value>
+    </property>
+    <property>
+        <name>oozie.service.HadoopAccessorService.supported.filesystems</name>
+        <value>*</value>
+    </property>
+</configuration>

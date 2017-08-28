@@ -1,0 +1,20 @@
+<workflow-app name="some_task" xmlns="uri:oozie:workflow:0.4">
+    <start to="some_task_job"/>
+    <action name="some_task_job">
+        <shell xmlns="uri:oozie:shell-action:0.1">
+            <job-tracker>${jobTracker}</job-tracker>
+            <name-node>${nameNode}</name-node>
+            <exec>/bin/bash</exec>
+            <argument>run.sh</argument>
+            <argument>${dayToLoad}</argument>
+            <file>id_rsa#id_rsa</file>
+            <file>run.sh#run.sh</file>
+        </shell>
+        <ok to="end" />
+        <error to="fail" />
+    </action>
+    <kill name="fail">
+        <message>Action failed, error message [${wf:errorMessage(wf:lastErrorNode())}]</message>
+    </kill>
+    <end name="end"/>
+</workflow-app>

@@ -1,0 +1,33 @@
+<coordinator-app name="some_coordinator" frequency="${coord:days(1)}" start="2016-11-06T02:30Z" end="2020-01-01T00:00Z" timezone="UTC" 
+    xmlns="uri:oozie:coordinator:0.2">
+    <datasets>
+        <dataset name="some_dataset" frequency="${coord:days(1)}" initial-instance="2016-11-06T02:30Z" timezone="UTC">
+            <uri-template>${s3Path}/dir1/partition1=26/partition2=${YEAR}-${MONTH}-${DAY}</uri-template>
+            <done-flag></done-flag>
+        </dataset>
+    </datasets>
+    <output-events>
+        <data-out name="some_output" dataset="some_dataset">
+            <instance>${coord:current(-1)}</instance>
+        </data-out>
+    </output-events>
+    <action>
+        <workflow>
+            <app-path>${appPath}</app-path>
+            <configuration>
+                <property>
+                    <name>jobTracker</name>
+                    <value>${jobTracker}</value>
+                </property>
+                <property>
+                    <name>nameNode</name>
+                    <value>${nameNode}</value>
+                </property>
+                <property>
+                    <name>dayToLoad</name>
+                    <value>${coord:dataOut('some_output')}</value>
+                </property>
+            </configuration>
+        </workflow>
+    </action>
+</coordinator-app>

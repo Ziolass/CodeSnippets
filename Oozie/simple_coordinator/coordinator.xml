@@ -1,0 +1,22 @@
+<coordinator-app name="simple_coordinator" frequency="${coord:days(1)}" start="2016-11-26T07:00Z" end="2020-01-01T00:00Z" timezone="UTC" 
+    xmlns="uri:oozie:coordinator:0.2">
+    <action>
+        <workflow>
+            <app-path>${appPath}</app-path>
+            <configuration>
+                <property>
+                    <name>jobTracker</name>
+                    <value>${jobTracker}</value>
+                </property>
+                <property>
+                    <name>nameNode</name>
+                    <value>${nameNode}</value>
+                </property>
+                <property>
+                    <name>dayToPrepare</name>
+                    <value>${coord:formatTime(coord:dateOffset(coord:nominalTime(), -1,'DAY'), "yyyy-MM-dd")}</value>
+                </property>
+            </configuration>
+        </workflow>
+    </action>
+</coordinator-app>
