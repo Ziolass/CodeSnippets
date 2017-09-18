@@ -1,3 +1,4 @@
+# Valid for spark < 2.0
 from pyspark import SparkContext, SparkConf
 from pyspark.sql import HiveContext
 
